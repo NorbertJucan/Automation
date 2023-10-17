@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Page Test</title>
+    <style>
+        /* CSS styles for the menu and buttons */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        .menu {
+            display: none;
+            position: absolute;
+            background-color: #333;
+            color: #fff;
+            list-style: none;
+            padding: 0;
+            width: 200px;
+            border-radius: 5px;
+        }
+
+        .menu-item {
+            padding: 10px;
+            border-bottom: 1px solid #555;
+        }
+
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+
+        .button {
+            margin: 10px;
+            padding: 10px 20px;
+            background-color: #0074D9;
+            color: #FFF;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Menu Page</h1>
+    
+    <button id="toggleMenu" class="button">Toggle Menu</button>
+
+    <ul class="menu" id="menu">
+        <li class="menu-item"><a href="#" onclick="navigate('Page 1')">Page 1</a></li>
+        <li class="menu-item"><a href="#" onclick="navigate('Page 2')">Page 2</a></li>
+        <li class="menu-item"><a href="#" onclick="navigate('Page 3')">Page 3</a></li>
+    </ul>
+
+    <div id="output"></div>
+
+    <script>
+        const menu = document.getElementById("menu");
+        const toggleMenuButton = document.getElementById("toggleMenu");
+        const output = document.getElementById("output");
+
+        // Function to toggle the menu's visibility
+        function toggleMenu() {
+            if (menu.style.display === "none" || menu.style.display === "") {
+                menu.style.display = "block";
+            } else {
+                menu.style.display = "none";
+            }
+        }
+
+        // Function to simulate a navigation action
+        function navigate(pageName) {
+            output.textContent = `Navigated to ${pageName}`;
+            // Hide the menu after navigation (optional)
+            menu.style.display = "none";
+        }
+
+        toggleMenuButton.addEventListener("click", toggleMenu);
+
+        // Prevent the default link behavior
+        const menuItems = document.querySelectorAll(".menu-item a");
+        menuItems.forEach((item) => {
+            item.addEventListener("click", (e) => {
+                e.preventDefault();
+            });
+        });
+    </script>
+</body>
+</html>
