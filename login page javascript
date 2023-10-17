@@ -1,0 +1,24 @@
+// cypress/integration/login.spec.js
+
+describe('Login Test', () => {
+  it('should log in with valid credentials', () => {
+    cy.visit('/login'); // Replace with your login page URL
+
+    cy.get('input[name="username"]').type('your-username');
+    cy.get('input[name="password"]').type('your-password');
+    cy.get('button[type="submit"]').click();
+
+    cy.url().should('include', '/dashboard'); // Replace with the expected URL after successful login
+    cy.get('.welcome-message').should('contain', 'Welcome, User!'); // Replace with the expected welcome message
+  });
+
+  it('should show an error message with invalid credentials', () => {
+    cy.visit('/login'); // Replace with your login page URL
+
+    cy.get('input[name="username"]').type('invalid-username');
+    cy.get('input[name="password"]').type('invalid-password');
+    cy.get('button[type="submit"]').click();
+
+    cy.get('.error-message').should('contain', 'Invalid username or password'); // Replace with the expected error message
+  });
+});
